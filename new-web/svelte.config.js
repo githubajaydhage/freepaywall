@@ -1,6 +1,6 @@
 import { mdsvex, escapeSvelte } from "mdsvex";
 import { createHighlighter } from "shiki";
-import adapter from "@sveltejs/adapter-auto";
+import adapter from "@sveltejs/adapter-static";
 import { toHtml } from "hast-util-to-html";
 import { vitePreprocess } from "@sveltejs/vite-plugin-svelte";
 import { h } from "hastscript";
@@ -148,7 +148,11 @@ const config = {
 	preprocess: [vitePreprocess(), mdsvex(mdsvexOptions)],
 
 	kit: {
-		adapter: adapter(),
+		   adapter: adapter({
+			   pages: "dist",
+			   assets: "dist",
+			   fallback: null
+		   }),
 	},
 };
 
